@@ -1,5 +1,10 @@
 # iniciante-em-programacao-2022
 
+Jogo finalizado e rodando na minha máquina
+![](https://github.com/GiulioBernardi/fotos/blob/master/jogo-da-velha.gif)
+
+
+
 ## Desafio
 
 Desafio do módulo Iniciante em Programação do Movimento Codar 2022. Pratique lógica de programação com Javascript criando o jogo da velha!
