@@ -3,8 +3,6 @@ const O = "O";
 let jogadorAtual = X
 let areaJaSelecioada = []
 let acabou = false
-let vencedor;
-let quadrados = []
 alguemVenceu = false
 const q1 = document.querySelector(`[data-linha='${1}'][data-coluna='${1}']`);
 const q2 = document.querySelector(`[data-linha='${1}'][data-coluna='${2}']`);
@@ -15,111 +13,64 @@ const q6 = document.querySelector(`[data-linha='${2}'][data-coluna='${3}']`);
 const q7 = document.querySelector(`[data-linha='${3}'][data-coluna='${1}']`);
 const q8 = document.querySelector(`[data-linha='${3}'][data-coluna='${2}']`);
 const q9 = document.querySelector(`[data-linha='${3}'][data-coluna='${3}']`);
+let quadrados = [q1, q2, q3, q4, q5, q6, q7, q8, q9]
+let vitoriasPossiveis= [
+    [q1, q2, q3],
+    [q1, q4, q7],
+    [q1, q5, q9],
+    [q4, q5, q6],
+    [q7, q8, q9],
+    [q7, q5, q3],
+    [q2, q5, q8],
+    [q3, q6, q9],
+]
 
 function reiniciarJogo() {
-    q1.innerHTML = "";
-    q2.innerHTML = "";
-    q3.innerHTML = "";
-    q4.innerHTML = "";
-    q5.innerHTML = "";
-    q6.innerHTML = "";
-    q7.innerHTML = "";
-    q8.innerHTML = "";
-    q9.innerHTML = "";
+    for(let i=0; i<quadrados.length; i++){
+        quadrados[i].innerHTML = "";
+    }
     jogadorAtual = X
     marcarJogadorAtivo(X)
-    quadrados = []
     exibirResultado()
     acabou = false
     alguemVenceu = false
-
 }
 
 function selecionarArea(posicaoLinha, posicaoColuna) {
+    quadradoJaFoiSelecionado = document.querySelector(`[data-linha='${posicaoLinha}'][data-coluna='${posicaoColuna}']`).textContent != ""
+    jogoAcabou = acabou == true
     if (jogadorAtual == X) {
-        if (document.querySelector(`[data-linha='${posicaoLinha}'][data-coluna='${posicaoColuna}']`).textContent != "" || acabou == true) {
+        if (quadradoJaFoiSelecionado || jogoAcabou) {
             return
         } else {
             marcarJogadorAtivo(X)
             desenharSimbolo(X, posicaoLinha, posicaoColuna)
-            quadrados.push(X)
             jogadorAtual = O
             marcarJogadorAtivo(O)
         }
     } else {
-        if (document.querySelector(`[data-linha='${posicaoLinha}'][data-coluna='${posicaoColuna}']`).textContent != "" || acabou == true) {
+        if (quadradoJaFoiSelecionado || jogoAcabou) {
             return
         } else {
             marcarJogadorAtivo(O)
             desenharSimbolo(O, posicaoLinha, posicaoColuna)
-            quadrados.push(O)
             jogadorAtual = X
             marcarJogadorAtivo(X)
         }
     }
 
+    for(let i=0; i<vitoriasPossiveis.length; i++){
+        if (vitoriasPossiveis[i][0].textContent != "" && vitoriasPossiveis[i][1].textContent != "" && vitoriasPossiveis[i][2].textContent != "") {
+            if(vitoriasPossiveis[i][0].textContent == vitoriasPossiveis[i][1].textContent && vitoriasPossiveis[i][0].textContent == vitoriasPossiveis[i][2].textContent){
+                exibirResultado("Jogador " + vitoriasPossiveis[i][0].textContent + " venceu!")
+                acabou = true
+                alguemVenceu = true
 
-    if (q1.textContent != "" && q1.textContent != "" && q3.textContent != "") {
-        if ((q1.textContent == q2.textContent) && (q1.textContent == q3.textContent)) {
-            exibirResultado("Jogador: " + q1.textContent + " venceu!")
-            acabou = true
-            alguemVenceu = true
-
+            }
+            if ((q1.textContent != "") && (q2.textContent != "") && (q3.textContent != "") && (q4.textContent != "") && (q5.textContent != "") && (q6.textContent != "") && (q7.textContent != "") && (q8.textContent != "") && (q9.textContent != "") && (alguemVenceu == false)) {
+                exibirResultado("EMPATE")
+                acabou = true
+            }
         }
-    }
-    if (q1.textContent != "" && q4.textContent != "" && q7.textContent != "") {
-        if ((q1.textContent == q4.textContent) && (q1.textContent == q7.textContent)) {
-            exibirResultado("Jogador: " + q1.textContent + " venceu!")
-            acabou = true
-            alguemVenceu = true
-
-        }
-    }
-    if (q1.textContent != "" && q5.textContent != "" && q9.textContent != "") {
-        if ((q1.textContent == q5.textContent) && (q1.textContent == q9.textContent)) {
-            exibirResultado("Jogador: " + q1.textContent + " venceu!")
-            acabou = true
-            alguemVenceu = true
-        }
-    }
-    if (q4.textContent != "" && q5.textContent != "" && q6.textContent != "") {
-        if ((q4.textContent == q5.textContent) && (q4.textContent == q6.textContent)) {
-            exibirResultado("Jogador: " + q4.textContent + " venceu!")
-            acabou = true
-            alguemVenceu = true
-        }
-    }
-    if (q7.textContent != "" && q8.textContent != "" && q9.textContent != "") {
-        if ((q7.textContent == q8.textContent) && (q7.textContent == q9.textContent)) {
-            exibirResultado("Jogador: " + q7.textContent + " venceu!")
-            acabou = true
-            alguemVenceu = true
-        }
-    }
-    if (q7.textContent != "" && q5.textContent != "" && q3.textContent != "") {
-        if ((q7.textContent == q5.textContent) && (q7.textContent == q3.textContent)) {
-            exibirResultado("Jogador: " + q7.textContent + " venceu!")
-            acabou = true
-            alguemVenceu = true
-        }
-    }
-    if (q2.textContent != "" && q5.textContent != "" && q8.textContent != "") {
-        if ((q2.textContent == q5.textContent) && (q2.textContent == q8.textContent)) {
-            exibirResultado("Jogador: " + q2.textContent + " venceu!")
-            acabou = true
-            alguemVenceu = true
-        }
-    }
-    if (q3.textContent != "" && q6.textContent != "" && q9.textContent != "") {
-        if ((q3.textContent == q6.textContent) && (q3.textContent == q9.textContent)) {
-            exibirResultado("Jogador: " + q3.textContent + " venceu!")
-            acabou = true
-            alguemVenceu = true
-
-        }
-    }
-    if ((q1.textContent != "") && (q2.textContent != "") && (q3.textContent != "") && (q4.textContent != "") && (q5.textContent != "") && (q6.textContent != "") && (q7.textContent != "") && (q8.textContent != "") && (q9.textContent != "") && (alguemVenceu == false)) {
-        exibirResultado("EMPATE")
-        acabou = true
-    }
+    }   
 }
