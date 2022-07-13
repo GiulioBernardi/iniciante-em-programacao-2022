@@ -4,8 +4,6 @@ Jogo finalizado e rodando na minha máquina <br>
 <p align="center">
   <img src="https://github.com/GiulioBernardi/fotos/blob/master/jogo-da-velha.gif" />
 </p>
-![](https://github.com/GiulioBernardi/fotos/blob/master/jogo-da-velha.gif)
-
 
 
 ## Desafio
