@@ -1,6 +1,9 @@
 # iniciante-em-programacao-2022
 
 Jogo finalizado e rodando na minha máquina <br>
+<p align="center">
+  <img src="[http://some_place.com/image.png](https://github.com/GiulioBernardi/fotos/blob/master/jogo-da-velha.gif)" />
+</p>
 ![](https://github.com/GiulioBernardi/fotos/blob/master/jogo-da-velha.gif)
 
 
