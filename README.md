@@ -1,5 +1,10 @@
 # iniciante-em-programacao-2022
 
+Demosnstração de vitória do jogador X, do jogador O e de EMPATE<p align="center">
+  <img src="https://github.com/GiulioBernardi/fotos/blob/master/jogo-da-velha.gif" />
+</p>
+
+
 ## Desafio
 
 Desafio do módulo Iniciante em Programação do Movimento Codar 2022. Pratique lógica de programação com Javascript criando o jogo da velha!
