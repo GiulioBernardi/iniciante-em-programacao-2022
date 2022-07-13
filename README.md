@@ -1,6 +1,6 @@
 # iniciante-em-programacao-2022
 
-Jogo finalizado e rodando na minha máquina
+Jogo finalizado e rodando na minha máquina <br>
 ![](https://github.com/GiulioBernardi/fotos/blob/master/jogo-da-velha.gif)
 
 
