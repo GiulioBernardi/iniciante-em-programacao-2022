@@ -1,7 +1,6 @@
 # iniciante-em-programacao-2022
 
-Jogo finalizado e rodando na minha máquina <br>
-<p align="center">
+Demosnstração de vitória do jogador X, do jogador O e de EMPATE<p align="center">
   <img src="https://github.com/GiulioBernardi/fotos/blob/master/jogo-da-velha.gif" />
 </p>
 
