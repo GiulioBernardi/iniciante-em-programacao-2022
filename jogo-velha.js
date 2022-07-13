@@ -1,6 +1,8 @@
 const X = "X";
 const O = "O";
 let jogadorAtual = X
+let proximoJogador;
+let jogador;
 let areaJaSelecioada = []
 let acabou = false
 alguemVenceu = false
@@ -36,38 +38,51 @@ function reiniciarJogo() {
     alguemVenceu = false
 }
 
+function defineJogadorAtual(jogador){
+    return jogadorAtual = jogador
+}
+
+function marcaPontoPassaRodada(jogadorAtual, proximoJogador, posicaoLinha, posicaoColuna){
+    marcarJogadorAtivo(jogadorAtual)
+    desenharSimbolo(jogadorAtual, posicaoLinha, posicaoColuna)
+    defineJogadorAtual(proximoJogador)
+    marcarJogadorAtivo(proximoJogador)
+}
+
 function selecionarArea(posicaoLinha, posicaoColuna) {
-    quadradoJaFoiSelecionado = document.querySelector(`[data-linha='${posicaoLinha}'][data-coluna='${posicaoColuna}']`).textContent != ""
+    quadradoJaFoiSelecionado = document
+        .querySelector(
+            `[data-linha='${posicaoLinha}'][data-coluna='${posicaoColuna}']`
+        ).textContent != ""
     jogoAcabou = acabou == true
     if (jogadorAtual == X) {
         if (quadradoJaFoiSelecionado || jogoAcabou) {
             return
         } else {
-            marcarJogadorAtivo(X)
-            desenharSimbolo(X, posicaoLinha, posicaoColuna)
-            jogadorAtual = O
-            marcarJogadorAtivo(O)
+            marcaPontoPassaRodada(X, O, posicaoLinha, posicaoColuna)
         }
     } else {
         if (quadradoJaFoiSelecionado || jogoAcabou) {
             return
         } else {
-            marcarJogadorAtivo(O)
-            desenharSimbolo(O, posicaoLinha, posicaoColuna)
-            jogadorAtual = X
-            marcarJogadorAtivo(X)
+            marcaPontoPassaRodada(O, X, posicaoLinha, posicaoColuna)
         }
     }
 
     for(let i=0; i<vitoriasPossiveis.length; i++){
-        if (vitoriasPossiveis[i][0].textContent != "" && vitoriasPossiveis[i][1].textContent != "" && vitoriasPossiveis[i][2].textContent != "") {
-            if(vitoriasPossiveis[i][0].textContent == vitoriasPossiveis[i][1].textContent && vitoriasPossiveis[i][0].textContent == vitoriasPossiveis[i][2].textContent){
+        let todasPosicoesPreenchidas = (q1.textContent != "") && (q2.textContent != "") && (q3.textContent != "") && (q4.textContent != "") && (q5.textContent != "") && (q6.textContent != "") && (q7.textContent != "") && (q8.textContent != "") && (q9.textContent != "")
+        let jogadorFezSequenciaDeTres = vitoriasPossiveis[i][0].textContent == vitoriasPossiveis[i][1].textContent && vitoriasPossiveis[i][0].textContent == vitoriasPossiveis[i][2].textContent
+        let posicoesPossiveisDiferenteDeNull = vitoriasPossiveis[i][0].textContent != "" && vitoriasPossiveis[i][1].textContent != "" && vitoriasPossiveis[i][2].textContent != "" 
+        
+        
+        if (posicoesPossiveisDiferenteDeNull) {
+            if(jogadorFezSequenciaDeTres){
                 exibirResultado("Jogador " + vitoriasPossiveis[i][0].textContent + " venceu!")
                 acabou = true
                 alguemVenceu = true
 
             }
-            if ((q1.textContent != "") && (q2.textContent != "") && (q3.textContent != "") && (q4.textContent != "") && (q5.textContent != "") && (q6.textContent != "") && (q7.textContent != "") && (q8.textContent != "") && (q9.textContent != "") && (alguemVenceu == false)) {
+            if (todasPosicoesPreenchidas && !alguemVenceu) {
                 exibirResultado("EMPATE")
                 acabou = true
             }
